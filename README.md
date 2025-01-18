@@ -1,2 +1,2 @@
-# radiogram
+# radiogram 📻
 Embedded AMQP transmission device
