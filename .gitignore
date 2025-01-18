@@ -1,17 +1,9 @@
-.eunit
-*.o
+.DS_Store
+.erlang.mk/
 *.beam
-*.plt
-erl_crash.dump
-.concrete/DEV_MODE
+radiogram.d
+deps/
+ebin/
+log/
+logs/
 
-# rebar 2.x
-.rebar
-rel/example_project
-ebin/*.beam
-deps
-
-# rebar 3
-.rebar3
-_build/
-_checkouts/

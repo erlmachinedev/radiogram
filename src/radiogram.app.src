@@ -1,0 +1,17 @@
+{application, radiogram,
+ [
+  {description,  "Embedded AMQP transmission device"},
+  {vsn,          "0.0.1"},
+  {modules,      []},
+  {registered,   []},
+  {applications, [
+                  kernel, stdlib,
+                  erlbox,
+                  rabbit_common
+                 ]},
+  {env,          []},
+
+  {licenses, ["apache-2.0"]},
+  {links, [{"GitHub", "https://github.com/erlmachinedev/radiogram"}]}
+ ]}.
+
