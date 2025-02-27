@@ -36,6 +36,28 @@ end_per_suite(_Config) ->
 test(_Config) ->
     meck:new(test, [passthrough, non_strict, no_link]),
 
-    radiogram:intercept(_Mod = test, _Opt = []),
+    %% TODO Inspect the validity of URI
+    %% NOTE Transport configuration is managed by Ranch
+
+    %% NOTE API to manage transmission (optional)
+    meck:expect(test, radiate, fun (Wave) -> Wave end),
+
+    %% NOTE API to inspect connection URI
+    meck:expect(test, connect, fun (Wave) -> Wave end),
+
+    %% NOTE API to manage AMQP
+    meck:expect(test, exec, fun (_Cmd) -> ok end),
+
+    %% TODO Investigate AMQP protocol header File
+    %% TODO In-memory DB (radiogram) and configuration Module (test)
+    %% TODO Investigate backing queue API implementation 
+
+    Command = #'exchange.declare'{ exchange = <<"X">>, type = <<"topic">> },
+
+    meck:expect(radiogram, exec, fun (Command) -> Command end),
+
+    %% TODO Decorated report implemented as observer_cli Plug-in
+
+    radiogram:intercept(_Port = 5672, test, []),
     
     meck:unload(test).
